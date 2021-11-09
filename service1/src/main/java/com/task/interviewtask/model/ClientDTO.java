@@ -1,8 +1,8 @@
 package com.task.interviewtask.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Value;
-import org.json.JSONPropertyName;
 
 @Value
 @Builder
@@ -22,17 +22,17 @@ public class ClientDTO {
     String coreCountry;
     String distance;
 
-    @JSONPropertyName(value = "_id")
+    @JsonProperty(value = "_id")
     public Long getId() {
         return id;
     }
 
-    @JSONPropertyName(value = "_type")
+    @JsonProperty(value = "_type")
     public String getFirstType() {
         return firstType;
     }
 
-    @JSONPropertyName(value = "type")
+    @JsonProperty(value = "type")
     public String getSecondType() {
         return secondType;
     }

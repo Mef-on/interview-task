@@ -1,0 +1,9 @@
+server:
+  port: 8081
+graphiql:
+  enabled: true
+  mapping: /graphqlp
+graphql:
+  servlet:
+    mapping: /graphql
+    corsEnabled: false

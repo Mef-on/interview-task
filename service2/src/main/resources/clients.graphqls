@@ -1,0 +1,33 @@
+schema {
+  query: Query
+}
+
+type Query {
+  getAllClients(size: Int): [ClientDTO]
+}
+
+#type Test{
+#  lol: String
+#  }
+type ClientDTO {
+  id: Int,
+  firstType: String,
+  key: String,
+  name: String,
+  fullName: String,
+  iataAirportCode: String,
+  secondType: String,
+  country: String,
+  geoPositionDTO: GeoPositionDTO,
+  locationId: Int,
+  inEurope: Boolean,
+  countryCode: String,
+  coreCountry: String,
+  distance: String
+
+}
+
+type GeoPositionDTO {
+  latitude: String,
+  longitude: String
+}

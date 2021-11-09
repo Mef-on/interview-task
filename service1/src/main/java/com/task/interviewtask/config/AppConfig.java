@@ -1,15 +1,12 @@
 package com.task.interviewtask.config;
 
 import com.github.javafaker.Faker;
+import com.task.interviewtask.api.FakeDataApi;
 import com.task.interviewtask.logic.FakeDataGenerator;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-//@EnableAutoConfiguration
-//@ComponentScan(basePackageClasses = FakeDataGenerator.class)
 public class AppConfig {
 
     @Bean
@@ -18,7 +15,12 @@ public class AppConfig {
     }
 
     @Bean
-    public FakeDataGenerator fakeDataGenerator() {
-        return new FakeDataGenerator();
+    public FakeDataGenerator fakeDataGenerator(Faker faker) {
+        return new FakeDataGenerator(faker);
+    }
+
+    @Bean
+    public FakeDataApi fakeDataApi(FakeDataGenerator fakeDataGenerator) {
+        return new FakeDataApi(fakeDataGenerator);
     }
 }

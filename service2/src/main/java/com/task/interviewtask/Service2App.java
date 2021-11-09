@@ -3,11 +3,10 @@ package com.task.interviewtask;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-
 @SpringBootApplication
-public class InterviewTaskApplication {
+public class Service2App {
 
-	public static void main(String[] args) {
-		SpringApplication.run(InterviewTaskApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(Service2App.class, args);
+    }
 }
