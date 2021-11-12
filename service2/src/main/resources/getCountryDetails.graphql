@@ -1,0 +1,5 @@
+query($name: ID!) {
+  ClientDTO(name: $name) {
+  name
+  }
+}

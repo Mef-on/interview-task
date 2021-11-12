@@ -2,11 +2,12 @@ package com.task.interviewtask.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Value;
 
-@Value
+@Data
 @Builder
-public class ClientDTO {
+public class ClientDTO{
     Long id;
     String firstType;
     String key;

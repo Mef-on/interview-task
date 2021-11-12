@@ -10,24 +10,25 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>service2</artifactId>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-webflux</artifactId>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.netflix.graphql.dgs</groupId>-->
-<!--            <artifactId>graphql-dgs-spring-boot-starter</artifactId>-->
-<!--            <version>4.9.3</version>-->
-<!--            <scope>runtime</scope>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>com.graphql-java-kickstart</groupId>-->
-<!--            <artifactId>graphql-webclient-spring-boot-autoconfigure</artifactId>-->
-<!--            <version>1.0.0</version>-->
-<!--        </dependency>-->
-
+        <dependency>
+            <groupId>org.mountcloud</groupId>
+            <artifactId>graphql-client</artifactId>
+            <version>1.2</version>
+        </dependency>
 
 
         <dependency>
@@ -49,6 +50,11 @@
             <groupId>com.netflix.graphql.dgs</groupId>
             <artifactId>graphql-dgs-client</artifactId>
             <version>4.9.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
     </dependencies>
 

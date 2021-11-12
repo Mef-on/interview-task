@@ -1,13 +1,16 @@
 package com.task.interviewtask.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.json.JSONPropertyName;
 
 @Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClientDTO {
+public class ClientDTO{
     Long id;
     String firstType;
     String key;

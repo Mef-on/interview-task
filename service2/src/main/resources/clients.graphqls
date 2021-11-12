@@ -2,8 +2,11 @@ schema {
   query: Query
 }
 
-type Query {
-  getAllClients(size: Int): [ClientDTO]
+#type Query {
+#  getAllClients(size: Int): [ClientDTO]
+#}
+  type Query {
+  getAllClients: [ClientDTO]
 }
 
 #type Test{
