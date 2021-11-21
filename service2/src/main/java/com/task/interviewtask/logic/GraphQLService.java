@@ -1,85 +1,89 @@
 package com.task.interviewtask.logic;
 
-import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.task.interviewtask.model.ClientDTO;
-import com.task.interviewtask.model.GraphqlRequestBody;
+import com.task.interviewtask.repository.ClientRepo;
+import graphql.GraphQL;
+import graphql.schema.GraphQLSchema;
+import graphql.schema.idl.RuntimeWiring;
+import graphql.schema.idl.SchemaGenerator;
+import graphql.schema.idl.SchemaParser;
+import graphql.schema.idl.TypeDefinitionRegistry;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.MediaType;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
-import java.util.Arrays;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @Slf4j
-public class GraphQLService implements GraphQLQueryResolver{
+//public class GraphQLService implements GraphQLQueryResolver {
+public class GraphQLService {
+    private GraphQL graphQL;
+//    private final String url;
 
-    private final String url;
+    @Autowired
+    private ClientRepo clientRepo;
 
-    public GraphQLService(@Value("http://localhost:8081/graphqlp") String url) {
-        this.url = url;
-    }
+    @Value("clients.graphql")
+    private ClassPathResource classPathResource;
 
-    public List<ClientDTO> getAllClients() {
-//        String urlDataClients =
-        return Arrays.asList(
-                ClientDTO.builder()
-                        .name("Działa")
-                        .distance("lol")
-                        .build()
-        );
-    }
 
-    //    public Flux<ClientDTO> getAllClients(int size) {
-//        WebClient webClient = WebClient.builder().build();
-//
-//        String urlDataClients = "http://localhost:8080/generate/json/" + size;
-//        return webClient.get()
-//                .uri(urlDataClients)
-//                .retrieve()
-//                .bodyToFlux(ClientDTO.class);
-//    }
-//    public ClientDTO getAllClients() {
-//        return WebClient.create().get()
-//                .uri("http://localhost:8080/generate/json/1")
-//                .retrieve()
-//                .bodyToMono(ClientDTO.class)
-//                .block();
-//
+//    public GraphQLService(@Value("http://localhost:8081/graphqlp") String url) {
+//        this.url = url;
 //    }
 
-    public ClientDTO getCountryDetails(final String name) throws IOException {
+    @PostConstruct
+    private void loadSchema() throws IOException {
+        InputStream inputStream = classPathResource.getInputStream();
+        Reader targetReader = new InputStreamReader(inputStream);
 
-        WebClient webClient = WebClient.builder().build();
+        TypeDefinitionRegistry typeDefinitionRegistry = new SchemaParser().parse(targetReader);
+        RuntimeWiring runtimeWiring = buildRuntimeWriting();
 
-        GraphqlRequestBody graphQLRequestBody = new GraphqlRequestBody();
+        GraphQLSchema graphQLSchema = new SchemaGenerator().makeExecutableSchema(typeDefinitionRegistry, runtimeWiring);
+        graphQL = GraphQL.newGraphQL(graphQLSchema).build();
 
-        final String query = GraphqlSchemaReaderUtil.getSchemaFromFileName("getCountryDetails");
-//        String query = "{\n" +
-//                "  ClientDTO {\n" +
-//                "    name\n" +
-//                "  }\n" +
-//                "}";
+    }
 
-//        String variables = "{\n" +
-//                "  “name” : “name”\n" +
-//                "}";
-////        String variables = "{\n" +
-////                "  “name” : “name”\n" +
-////                "}";
-        final String variables = GraphqlSchemaReaderUtil.getSchemaFromFileName("variables");
+    private RuntimeWiring buildRuntimeWriting() {
+        return RuntimeWiring.newRuntimeWiring()
+                .type("Query", typeWiring -> typeWiring
+                        .dataFetcher("getAllClients", clientRepo))
+                .build();
+    }
 
-        graphQLRequestBody.setQuery(query);
-        graphQLRequestBody.setVariables(variables.replace("name", name));
-        return webClient.post()
-                .uri(url)
-                .contentType(MediaType.APPLICATION_JSON)
-                .bodyValue(graphQLRequestBody)
+    public GraphQL initiateGraphQL() {
+        return graphQL;
+    }
+
+    public List<ClientDTO> getAllClients(int size) {
+        String json = WebClient.builder()
+                .baseUrl("http://localhost:8080/generate")
+                .build()
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("/json/{size}")
+                        .build(1))
                 .retrieve()
-                .bodyToMono(ClientDTO.class)
+                .bodyToMono(String.class)
                 .block();
+
+        Gson gson = new Gson();
+
+        return gson.fromJson(json, new TypeToken<ArrayList<ClientDTO>>() {
+        }.getType());
     }
+
+
 }

@@ -25,9 +25,7 @@ public class Service2Api {
     @PostMapping
     public ResponseEntity<ClientDTO> getChooseData(@RequestBody test query) throws IOException {
         String name = "name";
-//        graphQLService.getAllClients();
-        return ResponseEntity.ok(graphQLService.getCountryDetails(name));
+        graphQLService.getAllClients(query.getSize());
+        return ResponseEntity.ok(null);
     }
-
-
 }

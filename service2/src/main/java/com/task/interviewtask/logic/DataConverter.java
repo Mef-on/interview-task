@@ -1,5 +1,6 @@
 package com.task.interviewtask.logic;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Builder;
 import lombok.extern.slf4j.Slf4j;
 import com.task.interviewtask.model.ClientDTO;
@@ -16,16 +17,18 @@ import java.util.stream.Collectors;
 @Builder
 public class DataConverter {
 
+    ObjectMapper objectMapper;
+
+    public DataConverter(ObjectMapper objectMapper) {
+        this.objectMapper = objectMapper;
+    }
+
     public List<String> covertDataStringToDataSet(String dataInQuery) {
         return Arrays.stream(dataInQuery.split(", ")).collect(Collectors.toList());
     }
-//    public JSONObject convertDataSetToJSON(List<String> list, ClientDTO clientDTO){
-//        JSONObject jsonObject = new JSONObject();
-//        for (String key: list
-//             ) {
-//            jsonObject.put()
-//
-//        }
-//    }
+
+    public ClientDTO convertJsonToClientDTO(String json) {
+        return objectMapper.convertValue(json, ClientDTO.class);
+    }
 
 }
