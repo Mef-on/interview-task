@@ -10,35 +10,21 @@ import org.json.JSONPropertyName;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ClientDTO{
-    Long id;
-    String firstType;
+public class ClientDTO {
+    Long _id;
+    String _type;
     String key;
     String name;
     String fullName;
     String iataAirportCode;
-    String secondType;
+    String type;
     String country;
-    GeoPositionDTO geoPositionDTO;
+    String latitude;
+    String longitude;
     Long locationId;
     Boolean inEurope;
     String countryCode;
     String coreCountry;
     String distance;
-
-    @JSONPropertyName(value = "_id")
-    public Long getId() {
-        return id;
-    }
-
-    @JSONPropertyName(value = "_type")
-    public String getFirstType() {
-        return firstType;
-    }
-
-    @JSONPropertyName(value = "type")
-    public String getSecondType() {
-        return secondType;
-    }
 }
 

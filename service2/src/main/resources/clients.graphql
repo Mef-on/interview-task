@@ -15,16 +15,17 @@ type Query {
 #  lol: String
 #  }
 type ClientDTO {
-  id: Int,
-  firstType: String,
+  _id: String,
+  _type: String,
   key: String,
   name: String,
   fullName: String,
   iataAirportCode: String,
-  secondType: String,
+  type: String,
   country: String,
-  geoPositionDTO: GeoPositionDTO,
-  locationId: Int,
+  latitude: String,
+  longitude: String,
+  locationId: String,
   inEurope: Boolean,
   countryCode: String,
   coreCountry: String,
@@ -32,7 +33,7 @@ type ClientDTO {
 
 }
 
-type GeoPositionDTO {
-  latitude: String,
-  longitude: String
-}
+#type GeoPositionDTO {
+#  latitude: String,
+#  longitude: String
+#}
