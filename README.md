@@ -1,5 +1,7 @@
 # aplikacja interview-task
 
+Projekt napisany w Java 11.
+
 Serwis pierwszy wystawiony jest na: `http://localhost:8080/generate/json/{size}`
 
 size - ilość obiektów do wygenerowania.
