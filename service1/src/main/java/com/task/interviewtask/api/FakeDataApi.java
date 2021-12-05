@@ -1,6 +1,5 @@
 package com.task.interviewtask.api;
 
-import com.task.interviewtask.exception.IllegalSizeOfListException;
 import com.task.interviewtask.logic.FakeDataGenerator;
 import com.task.interviewtask.model.ClientDTO;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,7 @@ public class FakeDataApi {
     private final FakeDataGenerator fakeDataGenerator;
 
     @GetMapping(path = "/{size}")
-    public ResponseEntity<List<ClientDTO>> getListOfClients(@PathVariable(name = "size") Integer size) throws IllegalSizeOfListException {
+    public ResponseEntity<List<ClientDTO>> getClients(@PathVariable(name = "size") Integer size) {
         return ResponseEntity.ok(fakeDataGenerator.generateListOfClientDTO(size));
     }
 }

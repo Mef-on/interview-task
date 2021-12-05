@@ -1,30 +1,24 @@
 package com.task.interviewtask.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.json.JSONPropertyName;
 
 @Builder
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class ClientDTO {
-    Long _id;
-    String _type;
-    String key;
-    String name;
-    String fullName;
-    String iataAirportCode;
-    String type;
-    String country;
-    String latitude;
-    String longitude;
-    Long locationId;
-    Boolean inEurope;
-    String countryCode;
-    String coreCountry;
-    String distance;
+    private Long _id;
+    private String _type;
+    private String key;
+    private String name;
+    private String fullName;
+    private String iataAirportCode;
+    private String type;
+    private String country;
+    private String locationId;
+    private Boolean inEurope;
+    private String countryCode;
+    private String coreCountry;
+    private String distance;
+    private GeoPositionDTO geo_position;
 }
 

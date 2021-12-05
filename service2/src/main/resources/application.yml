@@ -1,13 +1,8 @@
-#server:
-#  port: 8081
-#graphiql:
-#  enabled: true
-#  mapping: /graphqlp
-#graphql:
-#  servlet:
-#    mapping: /graphql
-#    corsEnabled: false
 server:
   port: 6060
   servlet:
-    context-path: /graphql-learnings
+    context-path: /graphql
+service1.url: http://localhost:8080/generate
+queryGraphQL: "{getAllFlatClients(size: SIZE){
+              PARAMS}
+              }"

@@ -2,38 +2,24 @@ schema {
   query: Query
 }
 
-
 type Query {
-    getAllClients(size: Int): [ClientDTO]
+    getAllFlatClients(size: Int): [FlatClientDTO]
 }
 
-#  type Query {
-#  getAllClients: [ClientDTO]
-#}
-
-#type Test{
-#  lol: String
-#  }
-type ClientDTO {
+type FlatClientDTO {
   _id: String,
   _type: String,
   key: String,
   name: String,
   fullName: String,
-  iataAirportCode: String,
+  iata_airport_code: String,
   type: String,
   country: String,
   latitude: String,
   longitude: String,
-  locationId: String,
+  location_id: String,
   inEurope: Boolean,
   countryCode: String,
   coreCountry: String,
   distance: String
-
 }
-
-#type GeoPositionDTO {
-#  latitude: String,
-#  longitude: String
-#}
