@@ -1,8 +1,6 @@
 server:
   port: 6060
-  servlet:
-    context-path: /graphql
-service1.url: http://localhost:8080/generate
+service1.url: http://host.docker.internal:8080/generate
 queryGraphQL: "{getAllFlatClients(size: SIZE){
               PARAMS}
               }"

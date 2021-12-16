@@ -15,8 +15,8 @@
         <graphiql-spring-boot-starter.version>5.0.2</graphiql-spring-boot-starter.version>
         <graphql-java-tools>5.2.4</graphql-java-tools>
         <graphql-dgs-client>4.9.3</graphql-dgs-client>
-        <graphql-java>17.3</graphql-java>
         <graphql-java-servlet>6.1.2</graphql-java-servlet>
+        <graphql-java>17.3</graphql-java>
         <json-flattener>0.12.1</json-flattener>
         <spring-cloud-starter-contract-verifier>2.1.1.RELEASE</spring-cloud-starter-contract-verifier>
     </properties>
@@ -48,13 +48,13 @@
         </dependency>
         <dependency>
             <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-java-servlet</artifactId>
-            <version>${graphql-java-servlet}</version>
+            <artifactId>graphql-java</artifactId>
+            <version>${graphql-java}</version>
         </dependency>
         <dependency>
             <groupId>com.graphql-java</groupId>
-            <artifactId>graphql-java</artifactId>
-            <version>${graphql-java}</version>
+            <artifactId>graphql-java-servlet</artifactId>
+            <version>${graphql-java-servlet}</version>
         </dependency>
         <dependency>
             <groupId>com.github.wnameless.json</groupId>
@@ -84,10 +84,6 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>11</source>
-                    <target>11</target>
-                </configuration>
             </plugin>
         </plugins>
     </build>

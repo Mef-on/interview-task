@@ -14,7 +14,7 @@ public class ClientDTO {
     private String iataAirportCode;
     private String type;
     private String country;
-    private String locationId;
+    private String location_id;
     private Boolean inEurope;
     private String countryCode;
     private String coreCountry;
