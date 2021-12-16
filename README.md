@@ -43,7 +43,7 @@ poziom:
 
 ``
 $ docker build -f Dockerfile -t service1:1.0 .
-$ docker run -p 8081:6060 -d --name service2 service2:1.0
+$ docker run -p 8081:8080 -d --name service1 service1:1.0
 ``
 serwis 2.
 poziom:
